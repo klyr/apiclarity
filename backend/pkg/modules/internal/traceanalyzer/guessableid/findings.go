@@ -75,6 +75,7 @@ func (a *AnnotationGuessableID) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a AnnotationGuessableID) Redacted() utils.TraceAnalyzerAnnotation {
 	newA := a
 	for i := range newA.Params {
@@ -82,6 +83,7 @@ func (a AnnotationGuessableID) Redacted() utils.TraceAnalyzerAnnotation {
 	}
 	return &newA
 }
+
 func (a *AnnotationGuessableID) ToFinding() utils.Finding {
 	paramNames := []string{}
 	for _, p := range a.Params {
@@ -139,10 +141,12 @@ func (a *APIAnnotationGuessableID) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a APIAnnotationGuessableID) Redacted() utils.TraceAnalyzerAPIAnnotation {
 	newA := a
 	return &newA
 }
+
 func (a *APIAnnotationGuessableID) ToFinding() utils.Finding {
 	var detailedDesc string
 	if len(a.ParamNames) > 0 {
@@ -162,6 +166,7 @@ func (a *APIAnnotationGuessableID) ToFinding() utils.Finding {
 		Alert:        utils.SeverityToAlert(a.Severity()),
 	}
 }
+
 func (a *APIAnnotationGuessableID) ToAPIFinding() oapicommon.APIFinding {
 	var additionalInfo *map[string]interface{}
 	if len(a.ParamNames) > 0 {
