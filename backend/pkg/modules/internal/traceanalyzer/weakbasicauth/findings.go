@@ -56,9 +56,11 @@ func (a *AnnotationShortPassword) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a AnnotationShortPassword) Redacted() utils.TraceAnalyzerAnnotation {
 	return &AnnotationShortPassword{"XXX", a.Length, a.MinSize}
 }
+
 func (a *AnnotationShortPassword) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "Too short Basic Auth password",
@@ -100,10 +102,12 @@ func (a *APIAnnotationShortPassword) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a APIAnnotationShortPassword) Redacted() utils.TraceAnalyzerAPIAnnotation {
 	newA := a
 	return &newA
 }
+
 func (a *APIAnnotationShortPassword) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "Too short Basic Auth password",
@@ -112,6 +116,7 @@ func (a *APIAnnotationShortPassword) ToFinding() utils.Finding {
 		Alert:        utils.SeverityToAlert(a.Severity()),
 	}
 }
+
 func (a *APIAnnotationShortPassword) ToAPIFinding() oapicommon.APIFinding {
 	return oapicommon.APIFinding{
 		Source: utils.ModuleName,
@@ -149,9 +154,11 @@ func (a *AnnotationKnownPassword) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a *AnnotationKnownPassword) Redacted() utils.TraceAnalyzerAnnotation {
 	return NewAnnotationKnownPassword("XXX")
 }
+
 func (a *AnnotationKnownPassword) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "Weak Basic Auth password (found in dictionary)",
@@ -193,10 +200,12 @@ func (a *APIAnnotationKnownPassword) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a APIAnnotationKnownPassword) Redacted() utils.TraceAnalyzerAPIAnnotation {
 	newA := a
 	return &newA
 }
+
 func (a *APIAnnotationKnownPassword) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "Weak Basic Auth password (found in dictionary)",
@@ -205,6 +214,7 @@ func (a *APIAnnotationKnownPassword) ToFinding() utils.Finding {
 		Alert:        utils.SeverityToAlert(a.Severity()),
 	}
 }
+
 func (a *APIAnnotationKnownPassword) ToAPIFinding() oapicommon.APIFinding {
 	return oapicommon.APIFinding{
 		Source: utils.ModuleName,
@@ -244,9 +254,11 @@ func (a *AnnotationSamePassword) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a *AnnotationSamePassword) Redacted() utils.TraceAnalyzerAnnotation {
 	return NewAnnotationSamePassword(a.User, "XXX", a.APIs)
 }
+
 func (a *AnnotationSamePassword) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "Same Basic Auth credentials used for another service",
@@ -294,10 +306,12 @@ func (a *APIAnnotationSamePassword) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a APIAnnotationSamePassword) Redacted() utils.TraceAnalyzerAPIAnnotation {
 	newA := a
 	return &newA
 }
+
 func (a *APIAnnotationSamePassword) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "Same Basic Auth credentials used for another service",
@@ -306,6 +320,7 @@ func (a *APIAnnotationSamePassword) ToFinding() utils.Finding {
 		Alert:        utils.SeverityToAlert(a.Severity()),
 	}
 }
+
 func (a *APIAnnotationSamePassword) ToAPIFinding() oapicommon.APIFinding {
 	return oapicommon.APIFinding{
 		Source: utils.ModuleName,
