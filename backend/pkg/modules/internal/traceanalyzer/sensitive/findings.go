@@ -53,9 +53,11 @@ func (a *AnnotationRegexpMatching) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a AnnotationRegexpMatching) Redacted() utils.TraceAnalyzerAnnotation {
 	return &a
 }
+
 func (a *AnnotationRegexpMatching) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "Matching regular expression",
@@ -108,10 +110,12 @@ func (a *APIAnnotationRegexpMatching) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a APIAnnotationRegexpMatching) Redacted() utils.TraceAnalyzerAPIAnnotation {
 	newA := a
 	return &newA
 }
+
 func (a *APIAnnotationRegexpMatching) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "Matching regular expression",
@@ -120,6 +124,7 @@ func (a *APIAnnotationRegexpMatching) ToFinding() utils.Finding {
 		Alert:        utils.SeverityToAlert(a.Severity()),
 	}
 }
+
 func (a *APIAnnotationRegexpMatching) ToAPIFinding() oapicommon.APIFinding {
 	var additionalInfo *map[string]interface{}
 	if len(a.MatchingRules) > 0 {
