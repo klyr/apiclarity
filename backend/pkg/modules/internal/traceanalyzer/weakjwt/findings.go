@@ -56,9 +56,11 @@ func (a *AnnotationNoAlgField) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a AnnotationNoAlgField) Redacted() utils.TraceAnalyzerAnnotation {
 	return &a
 }
+
 func (a *AnnotationNoAlgField) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "JWT has no algorithm specified",
@@ -104,10 +106,12 @@ func (a *APIAnnotationNoAlgField) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a APIAnnotationNoAlgField) Redacted() utils.TraceAnalyzerAPIAnnotation {
 	newA := a
 	return &newA
 }
+
 func (a *APIAnnotationNoAlgField) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "JWT has no algorithm specified",
@@ -116,6 +120,7 @@ func (a *APIAnnotationNoAlgField) ToFinding() utils.Finding {
 		Alert:        utils.SeverityToAlert(a.Severity()),
 	}
 }
+
 func (a *APIAnnotationNoAlgField) ToAPIFinding() oapicommon.APIFinding {
 	return oapicommon.APIFinding{
 		Source: utils.ModuleName,
@@ -151,9 +156,11 @@ func (a *AnnotationAlgFieldNone) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a AnnotationAlgFieldNone) Redacted() utils.TraceAnalyzerAnnotation {
 	return &a
 }
+
 func (a *AnnotationAlgFieldNone) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "'alg' field set to None",
@@ -199,10 +206,12 @@ func (a *APIAnnotationAlgFieldNone) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a APIAnnotationAlgFieldNone) Redacted() utils.TraceAnalyzerAPIAnnotation {
 	newA := a
 	return &newA
 }
+
 func (a *APIAnnotationAlgFieldNone) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "'alg' field set to None",
@@ -211,6 +220,7 @@ func (a *APIAnnotationAlgFieldNone) ToFinding() utils.Finding {
 		Alert:        utils.SeverityToAlert(a.Severity()),
 	}
 }
+
 func (a *APIAnnotationAlgFieldNone) ToAPIFinding() oapicommon.APIFinding {
 	return oapicommon.APIFinding{
 		Source: utils.ModuleName,
@@ -249,9 +259,11 @@ func (a *AnnotationNotRecommendedAlg) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a AnnotationNotRecommendedAlg) Redacted() utils.TraceAnalyzerAnnotation {
 	return &a
 }
+
 func (a *AnnotationNotRecommendedAlg) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "Not a recommanded JWT signing algorithm",
@@ -302,10 +314,12 @@ func (a *APIAnnotationNotRecommendedAlg) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a APIAnnotationNotRecommendedAlg) Redacted() utils.TraceAnalyzerAPIAnnotation {
 	newA := a
 	return &newA
 }
+
 func (a *APIAnnotationNotRecommendedAlg) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "Not a recommanded JWT signing algorithm",
@@ -314,6 +328,7 @@ func (a *APIAnnotationNotRecommendedAlg) ToFinding() utils.Finding {
 		Alert:        utils.SeverityToAlert(a.Severity()),
 	}
 }
+
 func (a *APIAnnotationNotRecommendedAlg) ToAPIFinding() oapicommon.APIFinding {
 	var additionalInfo *map[string]interface{}
 	description := "Signing algorithms that are not recommended were used"
@@ -361,9 +376,11 @@ func (a *AnnotationNoExpireClaim) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a AnnotationNoExpireClaim) Redacted() utils.TraceAnalyzerAnnotation {
 	return &a
 }
+
 func (a *AnnotationNoExpireClaim) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "JWT does not have any expire claims",
@@ -409,10 +426,12 @@ func (a *APIAnnotationNoExpireClaim) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a APIAnnotationNoExpireClaim) Redacted() utils.TraceAnalyzerAPIAnnotation {
 	newA := a
 	return &newA
 }
+
 func (a *APIAnnotationNoExpireClaim) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "JWT does not have any expire claims",
@@ -421,6 +440,7 @@ func (a *APIAnnotationNoExpireClaim) ToFinding() utils.Finding {
 		Alert:        utils.SeverityToAlert(a.Severity()),
 	}
 }
+
 func (a *APIAnnotationNoExpireClaim) ToAPIFinding() oapicommon.APIFinding {
 	return oapicommon.APIFinding{
 		Source: utils.ModuleName,
@@ -474,9 +494,11 @@ func (a *AnnotationExpTooFar) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a AnnotationExpTooFar) Redacted() utils.TraceAnalyzerAnnotation {
 	return &a
 }
+
 func (a *AnnotationExpTooFar) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "JWT expire too far in the future",
@@ -528,6 +550,7 @@ func (a *APIAnnotationExpTooFar) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a APIAnnotationExpTooFar) Redacted() utils.TraceAnalyzerAPIAnnotation {
 	newA := a
 	return &newA
@@ -541,6 +564,7 @@ func (a *APIAnnotationExpTooFar) ToFinding() utils.Finding {
 		Alert:        utils.SeverityToAlert(a.Severity()),
 	}
 }
+
 func (a *APIAnnotationExpTooFar) ToAPIFinding() oapicommon.APIFinding {
 	additionalInfo := &map[string]interface{}{
 		"expire_in_example": a.ExpireInExample.Seconds(),
@@ -645,6 +669,7 @@ func (a *APIAnnotationWeakSymetricSecret) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a APIAnnotationWeakSymetricSecret) Redacted() utils.TraceAnalyzerAPIAnnotation {
 	newA := a
 	return &newA
@@ -658,6 +683,7 @@ func (a *APIAnnotationWeakSymetricSecret) ToFinding() utils.Finding {
 		Alert:        utils.SeverityToAlert(a.Severity()),
 	}
 }
+
 func (a *APIAnnotationWeakSymetricSecret) ToAPIFinding() oapicommon.APIFinding {
 	return oapicommon.APIFinding{
 		Source: utils.ModuleName,
@@ -699,6 +725,7 @@ func (a *AnnotationSensitiveContent) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a AnnotationSensitiveContent) Redacted() utils.TraceAnalyzerAnnotation {
 	redactedHeaders := make([]string, len(a.SensitiveWordsInHeaders))
 	for i, r := range a.SensitiveWordsInHeaders {
@@ -713,6 +740,7 @@ func (a AnnotationSensitiveContent) Redacted() utils.TraceAnalyzerAnnotation {
 
 	return NewAnnotationSensitiveContent(redactedHeaders, redactedClaims)
 }
+
 func (a *AnnotationSensitiveContent) ToFinding() utils.Finding {
 	words := append(a.SensitiveWordsInHeaders, a.SensitiveWordsInClaims...)
 	return utils.Finding{
@@ -759,10 +787,12 @@ func (a *APIAnnotationSensitiveContent) Deserialize(serialized []byte) error {
 
 	return err
 }
+
 func (a APIAnnotationSensitiveContent) Redacted() utils.TraceAnalyzerAPIAnnotation {
 	newA := a
 	return &newA
 }
+
 func (a *APIAnnotationSensitiveContent) ToFinding() utils.Finding {
 	return utils.Finding{
 		ShortDesc:    "JWT claims or headers may contains sensitive content",
@@ -771,6 +801,7 @@ func (a *APIAnnotationSensitiveContent) ToFinding() utils.Finding {
 		Alert:        utils.SeverityToAlert(a.Severity()),
 	}
 }
+
 func (a *APIAnnotationSensitiveContent) ToAPIFinding() oapicommon.APIFinding {
 	return oapicommon.APIFinding{
 		Source: utils.ModuleName,
