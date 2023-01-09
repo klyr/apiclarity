@@ -1,0 +1,3 @@
+Dataplane proxies of Kuma services matching "{{ .Values.kuma.kumaService }}"
+will send APIClarity traces to "{{ .Values.apiclarity.hostname }}:{{
+.Values.apiclarity.port }}"
