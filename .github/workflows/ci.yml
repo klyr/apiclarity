@@ -6,7 +6,6 @@ env:
   GO_VERSION: 1.17
 
 jobs:
-
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -26,7 +25,7 @@ jobs:
 
     - name: Verify spec aggregation and code generation
       run: make api3-verify
-   
+
     - name: Check licenses
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
