@@ -49,4 +49,15 @@ entries:
     urls:
     - https://github.com/klyr/apiclarity/releases/download/apiclarity-v0.0.1-helm/apiclarity-v0.0.1.tgz
     version: v0.0.1
-generated: "2023-01-11T09:54:34.853402966Z"
+  kuma-plugin:
+  - apiVersion: v2
+    appVersion: v0.0.3
+    created: "2023-01-11T09:54:38.214298073Z"
+    description: Configure Kuma dataplanes to send traces to APIClarity
+    digest: 00ef3b16f932ca25d08e04734e591dc1a0570eeb38b855743ba2352856cc60c5
+    name: kuma-plugin
+    type: application
+    urls:
+    - https://github.com/klyr/apiclarity/releases/download/kuma-plugin-v0.0.3/kuma-plugin-v0.0.3.tgz
+    version: v0.0.3
+generated: "2023-01-11T09:54:38.214312574Z"
