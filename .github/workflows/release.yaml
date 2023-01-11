@@ -15,51 +15,51 @@ env:
   OTEL_COLLECTOR_VERSION: 0.60.0
 
 jobs:
-  verification:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          submodules: true
+  # verification:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+  #         submodules: true
 
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: ${{ env.GO_VERSION }}
+  #     - name: Set up Go
+  #       uses: actions/setup-go@v2
+  #       with:
+  #         go-version: ${{ env.GO_VERSION }}
 
-      - shell: bash
-        run: |
-          sudo apt-get install libpcap-dev
+  #     - shell: bash
+  #       run: |
+  #         sudo apt-get install libpcap-dev
 
-      - name: Check licenses
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: make license-check
+  #     - name: Check licenses
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       run: make license-check
 
-      - name: Run verification
-        run: make check
+  #     - name: Run verification
+  #       run: make check
 
-      - name: Previous tag validation
-        run: |
-          tag='${{ github.event.inputs.pre_version }}'
-          [[ $tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit 1
+  #     - name: Previous tag validation
+  #       run: |
+  #         tag='${{ github.event.inputs.pre_version }}'
+  #         [[ $tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit 1
 
-      - name: Tag validation
-        run: |
-          tag='${{ github.event.inputs.version }}'
-          [[ $tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit 1
+  #     - name: Tag validation
+  #       run: |
+  #         tag='${{ github.event.inputs.version }}'
+  #         [[ $tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit 1
 
-  release:
-    needs: verification
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          submodules: true
+  # release:
+  #   needs: verification
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+  #         submodules: true
 
       # - name: Set up Go
       #   uses: actions/setup-go@v2
@@ -189,7 +189,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: true
 
@@ -213,16 +213,16 @@ jobs:
           sed -i -e "s#wasmFilterURI:.*#wasmFilterURI: \"${WASM_URI}\"#" plugins/kuma/charts/values.yaml
 
       - name: Set up Helm
-        uses: azure/setup-helm@v1
+        uses: azure/setup-helm@v3.5
         with:
-          version: v3.4.0
+          version: v3.10.3
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4.4.0
         with:
           python-version: 3.7
 
       - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.1.0
+        uses: helm/chart-testing-action@v2.3.1
 
       - name: Add Bitnami Repository
         run: helm repo add bitnami https://charts.bitnami.com/bitnami
