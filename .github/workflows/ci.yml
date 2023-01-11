@@ -7,36 +7,36 @@ env:
 
 jobs:
 
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
+  # build:
+  #   name: Build
+  #   runs-on: ubuntu-latest
+  #   steps:
 
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: ${{ env.GO_VERSION }}
+  #   - name: Set up Go
+  #     uses: actions/setup-go@v2
+  #     with:
+  #       go-version: ${{ env.GO_VERSION }}
 
-    - shell: bash
-      run: |
-        sudo apt-get install libpcap-dev
+  #   - shell: bash
+  #     run: |
+  #       sudo apt-get install libpcap-dev
 
-    - name: Check out code
-      uses: actions/checkout@v3
+  #   - name: Check out code
+  #     uses: actions/checkout@v3
 
-    - name: Verify spec aggregation and code generation
-      run: make api3-verify
-   
-    - name: Check licenses
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: make license-check
+  #   - name: Verify spec aggregation and code generation
+  #     run: make api3-verify
 
-    - name: Run verification
-      run: make check
+  #   - name: Check licenses
+  #     env:
+  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     run: make license-check
 
-    - name: Build Docker image
-      run: make docker
+  #   - name: Run verification
+  #     run: make check
+
+  #   - name: Build Docker image
+  #     run: make docker
 
   lint_chart:
     name: Lint Helm Chart

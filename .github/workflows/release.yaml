@@ -184,7 +184,7 @@ jobs:
       #     GORELEASER_PREVIOUS_TAG: ${{ github.event.inputs.pre_version }}
 
   helm_release:
-    needs: release
+    # needs: release
     name: Publish Helm Chart
     runs-on: ubuntu-latest
     steps:
@@ -228,7 +228,7 @@ jobs:
         run: helm repo add bitnami https://charts.bitnami.com/bitnami
 
       - name: Run chart-testing (lint)
-        run: ct lint --chart-dirs charts,plugins/kuma --check-version-increment=false --validate-maintainers=false
+        run: ct lint --chart-dirs charts,plugins/kuma --check-version-increment=false --validate-maintainers=false --all
 
       - name: Configure Git
         run: |
